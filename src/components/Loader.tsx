@@ -1,5 +1,5 @@
 import React from 'react'
-import { ActivityIndicator, View } from 'react-native/types'
+import { ActivityIndicator, View } from 'react-native'
 
 const Loader = () => {
     return (
