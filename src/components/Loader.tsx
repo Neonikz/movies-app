@@ -1,10 +1,14 @@
 import React from 'react'
 import { ActivityIndicator, View } from 'react-native'
 
-const Loader = () => {
+interface LoaderProps {
+    color?: string
+}
+
+const Loader = ({ color = 'red' }: LoaderProps) => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <ActivityIndicator color="red" size={50} />
+            <ActivityIndicator color={color} size={50} />
         </View>
     )
 }

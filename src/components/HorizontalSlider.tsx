@@ -16,7 +16,7 @@ const HorizontalSlider = ({ title, movies }: HorizontalSliderProps) => {
             height: !!title ? 260 : 220
         }}>
             {
-                title && (<Text style={homeScreenStyles.popularText}>{title}</Text>)
+                title && (<Text style={homeScreenStyles.title}>{title}</Text>)
             }
             <FlatList
                 data={movies}
