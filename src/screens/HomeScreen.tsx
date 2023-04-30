@@ -43,7 +43,7 @@ const HomeScreen = () => {
                     </View>
 
                     <HorizontalSlider title="Populares" movies={popular} />
-                    <HorizontalSlider title="Los más Valoradas" movies={topRated} />
+                    <HorizontalSlider title="Las más Valoradas" movies={topRated} />
                     <HorizontalSlider title="Proximamente" movies={upcoming} />
                 </View>
             </ScrollView>
