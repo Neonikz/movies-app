@@ -1,7 +1,8 @@
 
 import { useEffect, useState } from 'react'
 import movieDB from '../api/movieDB'
-import { Movie, MovieDBMoviesResponse } from '../interfaces/movieInterface'
+import { Movie, MovieDBMoviesResponse } from '../interfaces/movieInterface';
+import ImageColors from 'react-native-image-colors'
 
 interface MoviesState {
     nowPlaying: Movie[],
@@ -48,6 +49,18 @@ const useMovies = () => {
         }
     }
 
+    const getPosterColors = async (index: number) => {
+        const movie = moviesState.nowPlaying[index]
+        const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+        try {
+            const colors = await ImageColors.getColors(uri, {})
+            console.log({ colors })
+
+        } catch (error) {
+            console.log({ error })
+        }
+    }
+
     useEffect(() => {
         getMovies()
     }, [])
@@ -56,6 +69,7 @@ const useMovies = () => {
     return {
         ...moviesState,
         isLoading,
+        getPosterColors
     }
 }
 
