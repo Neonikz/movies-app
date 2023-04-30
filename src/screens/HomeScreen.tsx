@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Dimensions, View, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import Carousel from 'react-native-snap-carousel';
@@ -16,6 +16,13 @@ const HomeScreen = () => {
 
     const { nowPlaying, popular, topRated, upcoming, isLoading, getPosterColors } = useMovies()
     const { top } = useSafeAreaInsets()
+
+    useEffect(() => {
+        if (nowPlaying.length > 0) {
+            getPosterColors(0)
+        }
+    }, [nowPlaying])
+
 
     if (isLoading) return <Loader />
 

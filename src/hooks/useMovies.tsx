@@ -1,8 +1,9 @@
 
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import movieDB from '../api/movieDB'
 import { Movie, MovieDBMoviesResponse } from '../interfaces/movieInterface';
-import ImageColors from 'react-native-image-colors'
+import { getImageColors } from '../helpers/getColors';
+import { GradientContext } from '../context/GradientContext';
 
 interface MoviesState {
     nowPlaying: Movie[],
@@ -20,6 +21,8 @@ const useMovies = () => {
         topRated: [],
         upcoming: [],
     })
+
+    const { setMainColors } = useContext(GradientContext)
 
     const getMovies = async () => {
         try {
@@ -52,13 +55,9 @@ const useMovies = () => {
     const getPosterColors = async (index: number) => {
         const movie = moviesState.nowPlaying[index]
         const uri = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-        try {
-            const colors = await ImageColors.getColors(uri, {})
-            console.log({ colors })
+        const [primary = 'transparent', secondary = 'transparent'] = await getImageColors(uri)
 
-        } catch (error) {
-            console.log({ error })
-        }
+        setMainColors({ primary, secondary })
     }
 
     useEffect(() => {
